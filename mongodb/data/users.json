@@ -1,0 +1,66 @@
+[
+  {
+    "_id": {
+      "$oid": "650000000000000000000001"
+    },
+    "username": "admin",
+    "email": "admin@temanberbagi.id",
+    "password": "scrypt$c6329ed0d37efa3c228180135c883526$eee1e7cdc3a4e44a895352d80d20e47c03c469833e108a7ce71a3af402ca7275afc9fc8b0b39500ae0b5d3129d3563c9bbe1725f95c37753df160872179363c9",
+    "name": "Administrator",
+    "tgl_lahir": null,
+    "telepon": "",
+    "alamat": "",
+    "role": "admin",
+    "createdAt": {
+      "$date": "2026-06-22T00:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-22T00:00:00.000Z"
+    },
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "650000000000000000000002"
+    },
+    "username": "ahmad",
+    "email": "ahmad@gmail.com",
+    "password": "scrypt$20a2bdae2752447462b2672acd0c35ac$2229b98d4eee14f7d766513a2c8f4f2a556260135dd1f390aaeac5976c616f8125bcc50933e15ed744824e24e9a203aae9b5aa543eac889a8c26d0083f925f4d",
+    "name": "Ahmad Fauzi",
+    "tgl_lahir": {
+      "$date": "1995-03-15T00:00:00.000Z"
+    },
+    "telepon": "",
+    "alamat": "",
+    "role": "user",
+    "createdAt": {
+      "$date": "2026-06-22T00:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-22T00:00:00.000Z"
+    },
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "650000000000000000000003"
+    },
+    "username": "siti",
+    "email": "siti@gmail.com",
+    "password": "scrypt$37441d30730c62a1545e17d5112979b4$53d2fc720f0a83821f070d4ef38174d689cc37fe2ded844c450b5a82e18802712bfe4ff34c08f588b57a41645abc6f83cd719421e04ef0a8bcefca74946543e6",
+    "name": "Siti Rahma",
+    "tgl_lahir": {
+      "$date": "1998-07-22T00:00:00.000Z"
+    },
+    "telepon": "",
+    "alamat": "",
+    "role": "user",
+    "createdAt": {
+      "$date": "2026-06-22T00:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-22T00:00:00.000Z"
+    },
+    "__v": 0
+  }
+]

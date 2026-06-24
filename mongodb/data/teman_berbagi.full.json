@@ -1,0 +1,544 @@
+{
+  "users": [
+    {
+      "_id": {
+        "$oid": "650000000000000000000001"
+      },
+      "username": "admin",
+      "email": "admin@temanberbagi.id",
+      "password": "scrypt$c6329ed0d37efa3c228180135c883526$eee1e7cdc3a4e44a895352d80d20e47c03c469833e108a7ce71a3af402ca7275afc9fc8b0b39500ae0b5d3129d3563c9bbe1725f95c37753df160872179363c9",
+      "name": "Administrator",
+      "tgl_lahir": null,
+      "telepon": "",
+      "alamat": "",
+      "role": "admin",
+      "createdAt": {
+        "$date": "2026-06-22T00:00:00.000Z"
+      },
+      "updatedAt": {
+        "$date": "2026-06-22T00:00:00.000Z"
+      },
+      "__v": 0
+    },
+    {
+      "_id": {
+        "$oid": "650000000000000000000002"
+      },
+      "username": "ahmad",
+      "email": "ahmad@gmail.com",
+      "password": "scrypt$20a2bdae2752447462b2672acd0c35ac$2229b98d4eee14f7d766513a2c8f4f2a556260135dd1f390aaeac5976c616f8125bcc50933e15ed744824e24e9a203aae9b5aa543eac889a8c26d0083f925f4d",
+      "name": "Ahmad Fauzi",
+      "tgl_lahir": {
+        "$date": "1995-03-15T00:00:00.000Z"
+      },
+      "telepon": "",
+      "alamat": "",
+      "role": "user",
+      "createdAt": {
+        "$date": "2026-06-22T00:00:00.000Z"
+      },
+      "updatedAt": {
+        "$date": "2026-06-22T00:00:00.000Z"
+      },
+      "__v": 0
+    },
+    {
+      "_id": {
+        "$oid": "650000000000000000000003"
+      },
+      "username": "siti",
+      "email": "siti@gmail.com",
+      "password": "scrypt$37441d30730c62a1545e17d5112979b4$53d2fc720f0a83821f070d4ef38174d689cc37fe2ded844c450b5a82e18802712bfe4ff34c08f588b57a41645abc6f83cd719421e04ef0a8bcefca74946543e6",
+      "name": "Siti Rahma",
+      "tgl_lahir": {
+        "$date": "1998-07-22T00:00:00.000Z"
+      },
+      "telepon": "",
+      "alamat": "",
+      "role": "user",
+      "createdAt": {
+        "$date": "2026-06-22T00:00:00.000Z"
+      },
+      "updatedAt": {
+        "$date": "2026-06-22T00:00:00.000Z"
+      },
+      "__v": 0
+    }
+  ],
+  "donasi": [
+    {
+      "_id": {
+        "$oid": "651000000000000000000001"
+      },
+      "img": "https://images.unsplash.com/photo-1448375240586-882707db888b?w=600&q=80",
+      "title": "Mari membantu keluarga kita yang berada di sumatra",
+      "deskripsi": "Dengan berbagi, kita bisa membantu mereka yang membutuhkan mulai dari memenuhi kebutuhan pangan, membantu pendidikan...",
+      "konten": "",
+      "hari": 4,
+      "jumlah": 295000,
+      "target": 500000,
+      "deadline": null,
+      "fitur": "donasi",
+      "verified": true,
+      "bank": "BCA",
+      "no_rekening": "1234567890",
+      "nama_rekening": "Teman Berbagi",
+      "createdAt": {
+        "$date": "2026-06-22T00:00:00.000Z"
+      },
+      "updatedAt": {
+        "$date": "2026-06-22T00:00:00.000Z"
+      },
+      "__v": 0
+    },
+    {
+      "_id": {
+        "$oid": "651000000000000000000002"
+      },
+      "img": "https://images.unsplash.com/photo-1609234334335-5f6d3a5b3d9a?w=600&q=80",
+      "title": "Bantu mereka agar dapat melaksanakan ibadah dengan hikmat",
+      "deskripsi": "Dengan berbagi, kita bisa membantu mereka yang membutuhkan...",
+      "konten": "",
+      "hari": 4,
+      "jumlah": 295000,
+      "target": 500000,
+      "deadline": null,
+      "fitur": "donasi",
+      "verified": true,
+      "bank": "BRI",
+      "no_rekening": "0987654321",
+      "nama_rekening": "Teman Berbagi",
+      "createdAt": {
+        "$date": "2026-06-22T00:00:00.000Z"
+      },
+      "updatedAt": {
+        "$date": "2026-06-22T00:00:00.000Z"
+      },
+      "__v": 0
+    },
+    {
+      "_id": {
+        "$oid": "651000000000000000000003"
+      },
+      "img": "https://images.unsplash.com/photo-1587134160474-2f1b940a5a0d?w=600&q=80",
+      "title": "Pengadaan mobile ambulance gratis bagi warga pelosok",
+      "deskripsi": "Pengadaan ambulance untuk masyarakat di daerah terpencil...",
+      "konten": "",
+      "hari": 20,
+      "jumlah": 295000,
+      "target": 500000,
+      "deadline": null,
+      "fitur": "donasi",
+      "verified": true,
+      "bank": "Mandiri",
+      "no_rekening": "1122334455",
+      "nama_rekening": "Teman Berbagi",
+      "createdAt": {
+        "$date": "2026-06-22T00:00:00.000Z"
+      },
+      "updatedAt": {
+        "$date": "2026-06-22T00:00:00.000Z"
+      },
+      "__v": 0
+    },
+    {
+      "_id": {
+        "$oid": "651000000000000000000004"
+      },
+      "img": "https://images.unsplash.com/photo-1547683905-f686c993aae5?w=600&q=80",
+      "title": "Mari membantu keluarga kita yang berada di sumatra",
+      "deskripsi": "Bantuan untuk keluarga terdampak bencana...",
+      "konten": "",
+      "hari": 4,
+      "jumlah": 295000,
+      "target": 500000,
+      "deadline": null,
+      "fitur": "donasi",
+      "verified": true,
+      "bank": null,
+      "no_rekening": null,
+      "nama_rekening": null,
+      "createdAt": {
+        "$date": "2026-06-22T00:00:00.000Z"
+      },
+      "updatedAt": {
+        "$date": "2026-06-22T00:00:00.000Z"
+      },
+      "__v": 0
+    },
+    {
+      "_id": {
+        "$oid": "651000000000000000000005"
+      },
+      "img": "https://images.unsplash.com/photo-1624555130581-1d9cca783bc0?w=600&q=80",
+      "title": "Saat ini Ibu suri memasuki stadium 3 kanker yang di derita",
+      "deskripsi": "Bantuan biaya pengobatan untuk Ibu Suri...",
+      "konten": "",
+      "hari": 4,
+      "jumlah": 295000,
+      "target": 500000,
+      "deadline": null,
+      "fitur": "donasi",
+      "verified": true,
+      "bank": null,
+      "no_rekening": null,
+      "nama_rekening": null,
+      "createdAt": {
+        "$date": "2026-06-22T00:00:00.000Z"
+      },
+      "updatedAt": {
+        "$date": "2026-06-22T00:00:00.000Z"
+      },
+      "__v": 0
+    },
+    {
+      "_id": {
+        "$oid": "651000000000000000000006"
+      },
+      "img": "https://images.unsplash.com/photo-1588859519748-d56d71e67e03?w=600&q=80",
+      "title": "Pengadaan mobile ambulance gratis bagi warga pelosok",
+      "deskripsi": "Ambulance gratis untuk warga pelosok...",
+      "konten": "",
+      "hari": 20,
+      "jumlah": 295000,
+      "target": 500000,
+      "deadline": null,
+      "fitur": "donasi",
+      "verified": true,
+      "bank": null,
+      "no_rekening": null,
+      "nama_rekening": null,
+      "createdAt": {
+        "$date": "2026-06-22T00:00:00.000Z"
+      },
+      "updatedAt": {
+        "$date": "2026-06-22T00:00:00.000Z"
+      },
+      "__v": 0
+    },
+    {
+      "_id": {
+        "$oid": "651000000000000000000007"
+      },
+      "img": "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&q=80",
+      "title": "Mari sempurnakan Ramadan dengan membayar Zakat Fitrah",
+      "deskripsi": "Program zakat fitrah Ramadan...",
+      "konten": "",
+      "hari": 30,
+      "jumlah": 0,
+      "target": 500000,
+      "deadline": null,
+      "fitur": "kewajiban",
+      "verified": false,
+      "bank": null,
+      "no_rekening": null,
+      "nama_rekening": null,
+      "createdAt": {
+        "$date": "2026-06-22T00:00:00.000Z"
+      },
+      "updatedAt": {
+        "$date": "2026-06-22T00:00:00.000Z"
+      },
+      "__v": 0
+    }
+  ],
+  "transaksi": [
+    {
+      "_id": {
+        "$oid": "652000000000000000000001"
+      },
+      "user": {
+        "$oid": "650000000000000000000002"
+      },
+      "donasi": {
+        "$oid": "651000000000000000000001"
+      },
+      "nama": "Ahmad Fauzi",
+      "email": "ahmad.fauzi@gmail.com",
+      "program": "Mari membantu keluarga di Sumatra",
+      "jumlah": 150000,
+      "metode": "Transfer BCA",
+      "bukti": true,
+      "bukti_foto": null,
+      "status": "pending",
+      "kategori": "donasi",
+      "tanggal": {
+        "$date": "2026-06-01T00:00:00.000Z"
+      },
+      "createdAt": {
+        "$date": "2026-06-22T00:00:00.000Z"
+      },
+      "updatedAt": {
+        "$date": "2026-06-22T00:00:00.000Z"
+      },
+      "__v": 0
+    },
+    {
+      "_id": {
+        "$oid": "652000000000000000000002"
+      },
+      "user": {
+        "$oid": "650000000000000000000003"
+      },
+      "donasi": {
+        "$oid": "651000000000000000000002"
+      },
+      "nama": "Siti Rahma",
+      "email": "siti.r@gmail.com",
+      "program": "Bantu ibadah dengan hikmat",
+      "jumlah": 75000,
+      "metode": "Transfer BRI",
+      "bukti": true,
+      "bukti_foto": null,
+      "status": "pending",
+      "kategori": "donasi",
+      "tanggal": {
+        "$date": "2026-06-01T00:00:00.000Z"
+      },
+      "createdAt": {
+        "$date": "2026-06-22T00:00:00.000Z"
+      },
+      "updatedAt": {
+        "$date": "2026-06-22T00:00:00.000Z"
+      },
+      "__v": 0
+    },
+    {
+      "_id": {
+        "$oid": "652000000000000000000003"
+      },
+      "user": null,
+      "donasi": {
+        "$oid": "651000000000000000000003"
+      },
+      "nama": "Budi Santoso",
+      "email": "budisan@yahoo.com",
+      "program": "Pengadaan ambulance warga pelosok",
+      "jumlah": 500000,
+      "metode": "Transfer Mandiri",
+      "bukti": true,
+      "bukti_foto": null,
+      "status": "verified",
+      "kategori": "donasi",
+      "tanggal": {
+        "$date": "2026-05-31T00:00:00.000Z"
+      },
+      "createdAt": {
+        "$date": "2026-06-22T00:00:00.000Z"
+      },
+      "updatedAt": {
+        "$date": "2026-06-22T00:00:00.000Z"
+      },
+      "__v": 0
+    },
+    {
+      "_id": {
+        "$oid": "652000000000000000000004"
+      },
+      "user": null,
+      "donasi": {
+        "$oid": "651000000000000000000005"
+      },
+      "nama": "Dewi Lestari",
+      "email": "dewi.l@hotmail.com",
+      "program": "Saat ini Ibu suri stadium 3",
+      "jumlah": 200000,
+      "metode": "Transfer BCA",
+      "bukti": false,
+      "bukti_foto": null,
+      "status": "pending",
+      "kategori": "donasi",
+      "tanggal": {
+        "$date": "2026-05-31T00:00:00.000Z"
+      },
+      "createdAt": {
+        "$date": "2026-06-22T00:00:00.000Z"
+      },
+      "updatedAt": {
+        "$date": "2026-06-22T00:00:00.000Z"
+      },
+      "__v": 0
+    },
+    {
+      "_id": {
+        "$oid": "652000000000000000000005"
+      },
+      "user": null,
+      "donasi": {
+        "$oid": "651000000000000000000001"
+      },
+      "nama": "Rizky Pratama",
+      "email": "rizky.p@gmail.com",
+      "program": "Mari membantu keluarga di Sumatra",
+      "jumlah": 100000,
+      "metode": "Transfer BNI",
+      "bukti": true,
+      "bukti_foto": null,
+      "status": "rejected",
+      "kategori": "donasi",
+      "tanggal": {
+        "$date": "2026-05-30T00:00:00.000Z"
+      },
+      "createdAt": {
+        "$date": "2026-06-22T00:00:00.000Z"
+      },
+      "updatedAt": {
+        "$date": "2026-06-22T00:00:00.000Z"
+      },
+      "__v": 0
+    },
+    {
+      "_id": {
+        "$oid": "652000000000000000000006"
+      },
+      "user": null,
+      "donasi": {
+        "$oid": "651000000000000000000003"
+      },
+      "nama": "Nur Hidayah",
+      "email": "nur.h@gmail.com",
+      "program": "Pengadaan ambulance warga pelosok",
+      "jumlah": 250000,
+      "metode": "Transfer BRI",
+      "bukti": true,
+      "bukti_foto": null,
+      "status": "pending",
+      "kategori": "donasi",
+      "tanggal": {
+        "$date": "2026-05-30T00:00:00.000Z"
+      },
+      "createdAt": {
+        "$date": "2026-06-22T00:00:00.000Z"
+      },
+      "updatedAt": {
+        "$date": "2026-06-22T00:00:00.000Z"
+      },
+      "__v": 0
+    },
+    {
+      "_id": {
+        "$oid": "652000000000000000000007"
+      },
+      "user": null,
+      "donasi": {
+        "$oid": "651000000000000000000002"
+      },
+      "nama": "Hasan Basri",
+      "email": "hasan.b@gmail.com",
+      "program": "Bantu ibadah dengan hikmat",
+      "jumlah": 50000,
+      "metode": "Transfer Mandiri",
+      "bukti": true,
+      "bukti_foto": null,
+      "status": "verified",
+      "kategori": "donasi",
+      "tanggal": {
+        "$date": "2026-05-29T00:00:00.000Z"
+      },
+      "createdAt": {
+        "$date": "2026-06-22T00:00:00.000Z"
+      },
+      "updatedAt": {
+        "$date": "2026-06-22T00:00:00.000Z"
+      },
+      "__v": 0
+    }
+  ],
+  "kontak": [
+    {
+      "_id": {
+        "$oid": "654000000000000000000001"
+      },
+      "nama": "Andi Wijaya",
+      "email": "andi@gmail.com",
+      "subjek": "Pertanyaan Donasi",
+      "pesan": "Bagaimana cara menyalurkan donasi untuk program ambulance?",
+      "dibaca": false,
+      "createdAt": {
+        "$date": "2026-06-22T00:00:00.000Z"
+      },
+      "updatedAt": {
+        "$date": "2026-06-22T00:00:00.000Z"
+      },
+      "__v": 0
+    }
+  ],
+  "pilardonatur": [
+    {
+      "_id": {
+        "$oid": "653000000000000000000001"
+      },
+      "user": {
+        "$oid": "650000000000000000000002"
+      },
+      "nama": "Ahmad R.",
+      "email": "ahmad@gmail.com",
+      "nominal": 100000,
+      "aktif": true,
+      "bulan_aktif": 15,
+      "createdAt": {
+        "$date": "2026-06-22T00:00:00.000Z"
+      },
+      "updatedAt": {
+        "$date": "2026-06-22T00:00:00.000Z"
+      },
+      "__v": 0
+    },
+    {
+      "_id": {
+        "$oid": "653000000000000000000002"
+      },
+      "user": {
+        "$oid": "650000000000000000000003"
+      },
+      "nama": "Siti N.",
+      "email": "siti@gmail.com",
+      "nominal": 50000,
+      "aktif": true,
+      "bulan_aktif": 17,
+      "createdAt": {
+        "$date": "2026-06-22T00:00:00.000Z"
+      },
+      "updatedAt": {
+        "$date": "2026-06-22T00:00:00.000Z"
+      },
+      "__v": 0
+    },
+    {
+      "_id": {
+        "$oid": "653000000000000000000003"
+      },
+      "user": null,
+      "nama": "Hamba Allah",
+      "email": "anon@email.com",
+      "nominal": 200000,
+      "aktif": true,
+      "bulan_aktif": 2,
+      "createdAt": {
+        "$date": "2026-06-22T00:00:00.000Z"
+      },
+      "updatedAt": {
+        "$date": "2026-06-22T00:00:00.000Z"
+      },
+      "__v": 0
+    },
+    {
+      "_id": {
+        "$oid": "653000000000000000000004"
+      },
+      "user": null,
+      "nama": "Yusuf P.",
+      "email": "yusuf@gmail.com",
+      "nominal": 150000,
+      "aktif": true,
+      "bulan_aktif": 20,
+      "createdAt": {
+        "$date": "2026-06-22T00:00:00.000Z"
+      },
+      "updatedAt": {
+        "$date": "2026-06-22T00:00:00.000Z"
+      },
+      "__v": 0
+    }
+  ]
+}

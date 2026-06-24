@@ -1,0 +1,177 @@
+[
+  {
+    "_id": {
+      "$oid": "651000000000000000000001"
+    },
+    "img": "https://images.unsplash.com/photo-1448375240586-882707db888b?w=600&q=80",
+    "title": "Mari membantu keluarga kita yang berada di sumatra",
+    "deskripsi": "Dengan berbagi, kita bisa membantu mereka yang membutuhkan mulai dari memenuhi kebutuhan pangan, membantu pendidikan...",
+    "konten": "",
+    "hari": 4,
+    "jumlah": 295000,
+    "target": 500000,
+    "deadline": null,
+    "fitur": "donasi",
+    "verified": true,
+    "bank": "BCA",
+    "no_rekening": "1234567890",
+    "nama_rekening": "Teman Berbagi",
+    "createdAt": {
+      "$date": "2026-06-22T00:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-22T00:00:00.000Z"
+    },
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "651000000000000000000002"
+    },
+    "img": "https://images.unsplash.com/photo-1609234334335-5f6d3a5b3d9a?w=600&q=80",
+    "title": "Bantu mereka agar dapat melaksanakan ibadah dengan hikmat",
+    "deskripsi": "Dengan berbagi, kita bisa membantu mereka yang membutuhkan...",
+    "konten": "",
+    "hari": 4,
+    "jumlah": 295000,
+    "target": 500000,
+    "deadline": null,
+    "fitur": "donasi",
+    "verified": true,
+    "bank": "BRI",
+    "no_rekening": "0987654321",
+    "nama_rekening": "Teman Berbagi",
+    "createdAt": {
+      "$date": "2026-06-22T00:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-22T00:00:00.000Z"
+    },
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "651000000000000000000003"
+    },
+    "img": "https://images.unsplash.com/photo-1587134160474-2f1b940a5a0d?w=600&q=80",
+    "title": "Pengadaan mobile ambulance gratis bagi warga pelosok",
+    "deskripsi": "Pengadaan ambulance untuk masyarakat di daerah terpencil...",
+    "konten": "",
+    "hari": 20,
+    "jumlah": 295000,
+    "target": 500000,
+    "deadline": null,
+    "fitur": "donasi",
+    "verified": true,
+    "bank": "Mandiri",
+    "no_rekening": "1122334455",
+    "nama_rekening": "Teman Berbagi",
+    "createdAt": {
+      "$date": "2026-06-22T00:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-22T00:00:00.000Z"
+    },
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "651000000000000000000004"
+    },
+    "img": "https://images.unsplash.com/photo-1547683905-f686c993aae5?w=600&q=80",
+    "title": "Mari membantu keluarga kita yang berada di sumatra",
+    "deskripsi": "Bantuan untuk keluarga terdampak bencana...",
+    "konten": "",
+    "hari": 4,
+    "jumlah": 295000,
+    "target": 500000,
+    "deadline": null,
+    "fitur": "donasi",
+    "verified": true,
+    "bank": null,
+    "no_rekening": null,
+    "nama_rekening": null,
+    "createdAt": {
+      "$date": "2026-06-22T00:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-22T00:00:00.000Z"
+    },
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "651000000000000000000005"
+    },
+    "img": "https://images.unsplash.com/photo-1624555130581-1d9cca783bc0?w=600&q=80",
+    "title": "Saat ini Ibu suri memasuki stadium 3 kanker yang di derita",
+    "deskripsi": "Bantuan biaya pengobatan untuk Ibu Suri...",
+    "konten": "",
+    "hari": 4,
+    "jumlah": 295000,
+    "target": 500000,
+    "deadline": null,
+    "fitur": "donasi",
+    "verified": true,
+    "bank": null,
+    "no_rekening": null,
+    "nama_rekening": null,
+    "createdAt": {
+      "$date": "2026-06-22T00:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-22T00:00:00.000Z"
+    },
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "651000000000000000000006"
+    },
+    "img": "https://images.unsplash.com/photo-1588859519748-d56d71e67e03?w=600&q=80",
+    "title": "Pengadaan mobile ambulance gratis bagi warga pelosok",
+    "deskripsi": "Ambulance gratis untuk warga pelosok...",
+    "konten": "",
+    "hari": 20,
+    "jumlah": 295000,
+    "target": 500000,
+    "deadline": null,
+    "fitur": "donasi",
+    "verified": true,
+    "bank": null,
+    "no_rekening": null,
+    "nama_rekening": null,
+    "createdAt": {
+      "$date": "2026-06-22T00:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-22T00:00:00.000Z"
+    },
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "651000000000000000000007"
+    },
+    "img": "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&q=80",
+    "title": "Mari sempurnakan Ramadan dengan membayar Zakat Fitrah",
+    "deskripsi": "Program zakat fitrah Ramadan...",
+    "konten": "",
+    "hari": 30,
+    "jumlah": 0,
+    "target": 500000,
+    "deadline": null,
+    "fitur": "kewajiban",
+    "verified": false,
+    "bank": null,
+    "no_rekening": null,
+    "nama_rekening": null,
+    "createdAt": {
+      "$date": "2026-06-22T00:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-22T00:00:00.000Z"
+    },
+    "__v": 0
+  }
+]

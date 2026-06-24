@@ -1,0 +1,78 @@
+[
+  {
+    "_id": {
+      "$oid": "653000000000000000000001"
+    },
+    "user": {
+      "$oid": "650000000000000000000002"
+    },
+    "nama": "Ahmad R.",
+    "email": "ahmad@gmail.com",
+    "nominal": 100000,
+    "aktif": true,
+    "bulan_aktif": 15,
+    "createdAt": {
+      "$date": "2026-06-22T00:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-22T00:00:00.000Z"
+    },
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "653000000000000000000002"
+    },
+    "user": {
+      "$oid": "650000000000000000000003"
+    },
+    "nama": "Siti N.",
+    "email": "siti@gmail.com",
+    "nominal": 50000,
+    "aktif": true,
+    "bulan_aktif": 17,
+    "createdAt": {
+      "$date": "2026-06-22T00:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-22T00:00:00.000Z"
+    },
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "653000000000000000000003"
+    },
+    "user": null,
+    "nama": "Hamba Allah",
+    "email": "anon@email.com",
+    "nominal": 200000,
+    "aktif": true,
+    "bulan_aktif": 2,
+    "createdAt": {
+      "$date": "2026-06-22T00:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-22T00:00:00.000Z"
+    },
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "653000000000000000000004"
+    },
+    "user": null,
+    "nama": "Yusuf P.",
+    "email": "yusuf@gmail.com",
+    "nominal": 150000,
+    "aktif": true,
+    "bulan_aktif": 20,
+    "createdAt": {
+      "$date": "2026-06-22T00:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-22T00:00:00.000Z"
+    },
+    "__v": 0
+  }
+]

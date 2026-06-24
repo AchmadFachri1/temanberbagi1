@@ -1,0 +1,202 @@
+[
+  {
+    "_id": {
+      "$oid": "652000000000000000000001"
+    },
+    "user": {
+      "$oid": "650000000000000000000002"
+    },
+    "donasi": {
+      "$oid": "651000000000000000000001"
+    },
+    "nama": "Ahmad Fauzi",
+    "email": "ahmad.fauzi@gmail.com",
+    "program": "Mari membantu keluarga di Sumatra",
+    "jumlah": 150000,
+    "metode": "Transfer BCA",
+    "bukti": true,
+    "bukti_foto": null,
+    "status": "pending",
+    "kategori": "donasi",
+    "tanggal": {
+      "$date": "2026-06-01T00:00:00.000Z"
+    },
+    "createdAt": {
+      "$date": "2026-06-22T00:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-22T00:00:00.000Z"
+    },
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "652000000000000000000002"
+    },
+    "user": {
+      "$oid": "650000000000000000000003"
+    },
+    "donasi": {
+      "$oid": "651000000000000000000002"
+    },
+    "nama": "Siti Rahma",
+    "email": "siti.r@gmail.com",
+    "program": "Bantu ibadah dengan hikmat",
+    "jumlah": 75000,
+    "metode": "Transfer BRI",
+    "bukti": true,
+    "bukti_foto": null,
+    "status": "pending",
+    "kategori": "donasi",
+    "tanggal": {
+      "$date": "2026-06-01T00:00:00.000Z"
+    },
+    "createdAt": {
+      "$date": "2026-06-22T00:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-22T00:00:00.000Z"
+    },
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "652000000000000000000003"
+    },
+    "user": null,
+    "donasi": {
+      "$oid": "651000000000000000000003"
+    },
+    "nama": "Budi Santoso",
+    "email": "budisan@yahoo.com",
+    "program": "Pengadaan ambulance warga pelosok",
+    "jumlah": 500000,
+    "metode": "Transfer Mandiri",
+    "bukti": true,
+    "bukti_foto": null,
+    "status": "verified",
+    "kategori": "donasi",
+    "tanggal": {
+      "$date": "2026-05-31T00:00:00.000Z"
+    },
+    "createdAt": {
+      "$date": "2026-06-22T00:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-22T00:00:00.000Z"
+    },
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "652000000000000000000004"
+    },
+    "user": null,
+    "donasi": {
+      "$oid": "651000000000000000000005"
+    },
+    "nama": "Dewi Lestari",
+    "email": "dewi.l@hotmail.com",
+    "program": "Saat ini Ibu suri stadium 3",
+    "jumlah": 200000,
+    "metode": "Transfer BCA",
+    "bukti": false,
+    "bukti_foto": null,
+    "status": "pending",
+    "kategori": "donasi",
+    "tanggal": {
+      "$date": "2026-05-31T00:00:00.000Z"
+    },
+    "createdAt": {
+      "$date": "2026-06-22T00:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-22T00:00:00.000Z"
+    },
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "652000000000000000000005"
+    },
+    "user": null,
+    "donasi": {
+      "$oid": "651000000000000000000001"
+    },
+    "nama": "Rizky Pratama",
+    "email": "rizky.p@gmail.com",
+    "program": "Mari membantu keluarga di Sumatra",
+    "jumlah": 100000,
+    "metode": "Transfer BNI",
+    "bukti": true,
+    "bukti_foto": null,
+    "status": "rejected",
+    "kategori": "donasi",
+    "tanggal": {
+      "$date": "2026-05-30T00:00:00.000Z"
+    },
+    "createdAt": {
+      "$date": "2026-06-22T00:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-22T00:00:00.000Z"
+    },
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "652000000000000000000006"
+    },
+    "user": null,
+    "donasi": {
+      "$oid": "651000000000000000000003"
+    },
+    "nama": "Nur Hidayah",
+    "email": "nur.h@gmail.com",
+    "program": "Pengadaan ambulance warga pelosok",
+    "jumlah": 250000,
+    "metode": "Transfer BRI",
+    "bukti": true,
+    "bukti_foto": null,
+    "status": "pending",
+    "kategori": "donasi",
+    "tanggal": {
+      "$date": "2026-05-30T00:00:00.000Z"
+    },
+    "createdAt": {
+      "$date": "2026-06-22T00:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-22T00:00:00.000Z"
+    },
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "652000000000000000000007"
+    },
+    "user": null,
+    "donasi": {
+      "$oid": "651000000000000000000002"
+    },
+    "nama": "Hasan Basri",
+    "email": "hasan.b@gmail.com",
+    "program": "Bantu ibadah dengan hikmat",
+    "jumlah": 50000,
+    "metode": "Transfer Mandiri",
+    "bukti": true,
+    "bukti_foto": null,
+    "status": "verified",
+    "kategori": "donasi",
+    "tanggal": {
+      "$date": "2026-05-29T00:00:00.000Z"
+    },
+    "createdAt": {
+      "$date": "2026-06-22T00:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-22T00:00:00.000Z"
+    },
+    "__v": 0
+  }
+]

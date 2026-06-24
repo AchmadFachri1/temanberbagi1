@@ -1,0 +1,19 @@
+[
+  {
+    "_id": {
+      "$oid": "654000000000000000000001"
+    },
+    "nama": "Andi Wijaya",
+    "email": "andi@gmail.com",
+    "subjek": "Pertanyaan Donasi",
+    "pesan": "Bagaimana cara menyalurkan donasi untuk program ambulance?",
+    "dibaca": false,
+    "createdAt": {
+      "$date": "2026-06-22T00:00:00.000Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-22T00:00:00.000Z"
+    },
+    "__v": 0
+  }
+]
