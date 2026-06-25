@@ -1,0 +1,31 @@
+{
+  "name": "teman-berbagi-mongodb",
+  "version": "1.0.0",
+  "description": "Platform donasi Teman Berbagi - Fullstack (Express + MongoDB/Mongoose + JWT)",
+  "main": "backend/server.js",
+  "scripts": {
+    "start": "node backend/server.js",
+    "dev": "nodemon backend/server.js",
+    "seed": "node backend/seeders/seed.js",
+    "import": "node mongodb/import.js",
+    "test": "jest --config backend/jest.config.js --forceExit --detectOpenHandles"
+  },
+  "keywords": ["donasi", "zakat", "sedekah", "express", "mongodb", "mongoose", "jwt"],
+  "author": "Teman Berbagi",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.0",
+    "express-validator": "^7.2.0",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.5.1",
+    "morgan": "^1.10.0"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "mongodb-memory-server": "^10.0.0",
+    "nodemon": "^3.1.4",
+    "supertest": "^7.0.0"
+  }
+}

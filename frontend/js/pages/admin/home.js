@@ -67,11 +67,11 @@
         <div class="admin-prog-chart">
           <div class="admin-prog-chart-title">Progress Donasi per Program</div>
           ${fanplateList.filter(f => f.target).map(f => {
-            const collected = donasiMasuk
-              .filter(d => d.program.toLowerCase().includes(f.judul.substring(0, 20).toLowerCase()) && d.status === 'verified')
-              .reduce((s, d) => s + d.jumlah, 0);
-            const pct = f.target ? Math.min(Math.round((collected / f.target) * 100), 100) : 0;
-            return `
+      const collected = donasiMasuk
+        .filter(d => d.donasi_id && String(d.donasi_id) === String(f.id) && d.status === 'verified')
+        .reduce((s, d) => s + d.jumlah, 0);
+      const pct = f.target ? Math.min(Math.round((collected / f.target) * 100), 100) : 0;
+      return `
               <div class="admin-prog-item">
                 <div class="admin-prog-label-row">
                   <div class="admin-prog-name">${f.judul.substring(0, 42)}${f.judul.length > 42 ? '...' : ''}</div>
@@ -81,14 +81,14 @@
                   <div class="admin-prog-fill" style="width:${pct}%"></div>
                 </div>
               </div>`;
-          }).join('')}
+    }).join('')}
           <div class="admin-prog-item" style="margin-top:8px">
             <div class="admin-prog-label-row">
               <div class="admin-prog-name">Rate Verifikasi</div>
-              <div class="admin-prog-pct">${Math.round((verified / donasiMasuk.length) * 100)}%</div>
+              <div class="admin-prog-pct">${donasiMasuk.length ? Math.round((verified / donasiMasuk.length) * 100) : 0}%</div>
             </div>
             <div class="admin-prog-track">
-              <div class="admin-prog-fill tan" style="width:${Math.round((verified / donasiMasuk.length) * 100)}%"></div>
+              <div class="admin-prog-fill tan" style="width:${donasiMasuk.length ? Math.round((verified / donasiMasuk.length) * 100) : 0}%"></div>
             </div>
           </div>
         </div>

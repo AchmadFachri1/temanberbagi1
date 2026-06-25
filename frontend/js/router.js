@@ -107,58 +107,20 @@ const LIGHT_PAGES = [
 
 /* ═══════════════════════════════════════════════════════════════
    3. DATA DONASI
-   Data awal dipakai sebagai fallback bila backend belum tersedia.
-   Saat halaman dimuat, data ini akan diisi ulang dari REST API
-   (GET /api/donasi?verified=true) melalui loadDonasiFromAPI().
+   Data SELALU dimuat dari database (MongoDB Atlas) melalui REST API.
+   Array dimulai kosong — diisi oleh loadDonasiFromAPI().
 ═══════════════════════════════════════════════════════════════ */
-const donasiData = [
-  {
-    id: 1,
-    img: 'https://images.unsplash.com/photo-1448375240586-882707db888b?w=600&q=80',
-    title: 'Mari membantu keluarga kita yang berada di sumatra',
-    hari: 4, jumlah: 295000, target: 500000,
-  },
-  {
-    id: 2,
-    img: 'https://images.unsplash.com/photo-1609234334335-5f6d3a5b3d9a?w=600&q=80',
-    title: 'Bantu mereka agar dapat melaksanakan ibadah dengan hikmat',
-    hari: 4, jumlah: 295000, target: 500000,
-  },
-  {
-    id: 3,
-    img: 'https://images.unsplash.com/photo-1587134160474-2f1b940a5a0d?w=600&q=80',
-    title: 'Pengadaan mobile ambulance gratis bagi warga pelosok',
-    hari: 20, jumlah: 295000, target: 500000,
-  },
-  {
-    id: 4,
-    img: 'https://images.unsplash.com/photo-1547683905-f686c993aae5?w=600&q=80',
-    title: 'Mari membantu keluarga kita yang berada di sumatra',
-    hari: 4, jumlah: 295000, target: 500000,
-  },
-  {
-    id: 5,
-    img: 'https://images.unsplash.com/photo-1624555130581-1d9cca783bc0?w=600&q=80',
-    title: 'Saat ini Ibu suri memasuki stadium 3 kanker yang di derita',
-    hari: 4, jumlah: 295000, target: 500000,
-  },
-  {
-    id: 6,
-    img: 'https://images.unsplash.com/photo-1588859519748-d56d71e67e03?w=600&q=80',
-    title: 'Pengadaan mobile ambulance gratis bagi warga pelosok',
-    hari: 20, jumlah: 295000, target: 500000,
-  },
-];
+const donasiData = [];
 
 /**
  * Muat data donasi dari backend (REST API) dan render ulang grid.
- * Jika backend tidak tersedia, data fallback tetap dipakai.
+ * Data selalu diambil dari database — tidak ada fallback hardcoded.
  */
 async function loadDonasiFromAPI() {
   if (typeof window.donasiAPI === 'undefined') return;
   try {
     const { response, data } = await window.donasiAPI.getAll('fitur=donasi&verified=true');
-    if (response.ok && data.success && Array.isArray(data.data) && data.data.length > 0) {
+    if (response.ok && data.success && Array.isArray(data.data)) {
       // Ganti isi array tanpa mengubah referensi (agar binding lain tetap valid)
       donasiData.length = 0;
       data.data.forEach((d) => {
@@ -182,7 +144,7 @@ async function loadDonasiFromAPI() {
       }
     }
   } catch (err) {
-    console.warn('Backend donasi tidak tersedia, memakai data lokal.', err.message);
+    console.warn('Backend donasi tidak tersedia.', err.message);
   }
 }
 window.loadDonasiFromAPI = loadDonasiFromAPI;
@@ -267,15 +229,11 @@ function _updateNav(pageName) {
   if (isAdmin) {
     if (mainNav) mainNav.style.display = 'none';
     if (mainNavLight) mainNavLight.style.display = 'none';
-    // Inject tombol logout di sidebar admin (jika belum ada)
-    _injectAdminLogout();
     return;
   }
 
   if (mainNav) mainNav.style.display = isLight ? 'none' : 'flex';
   if (mainNavLight) mainNavLight.style.display = isLight ? 'flex' : 'none';
-  // Hentikan observer admin saat meninggalkan halaman admin
-  _stopAdminLogoutObserver();
 
   // Highlight link aktif di navbar dark
   document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active-nav'));
@@ -315,78 +273,6 @@ function _syncLightTab(pageName) {
       el.classList.add('nav-light-link');
     }
   });
-}
-
-/**
- * Inject tombol Logout ke sidebar admin.
- * Menggunakan MutationObserver agar tombol selalu ada meskipun
- * sidebar di-render ulang saat pindah sub-halaman admin
- * (Home, Buat Fanplate, Kelola Fanplate, Verifikasi).
- */
-let _adminLogoutObserver = null;
-
-function _injectAdminLogout() {
-  // Hentikan observer lama kalau ada
-  _stopAdminLogoutObserver();
-
-  // Fungsi utama: sisipkan tombol jika belum ada
-  function _ensureLogoutBtn() {
-    const footer = document.querySelector('.admin-sidebar-footer');
-    if (!footer) return;
-    if (footer.querySelector('.admin-sidebar-logout-btn')) return;
-
-    const logoutBtn = document.createElement('button');
-    logoutBtn.className = 'admin-sidebar-logout-btn';
-    logoutBtn.innerHTML = `
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
-        <polyline points="16 17 21 12 16 7"/>
-        <line x1="21" y1="12" x2="9" y2="12"/>
-      </svg>
-      <span>Keluar</span>`;
-    logoutBtn.onclick = function () {
-      _stopAdminLogoutObserver();
-      // Hapus sesi admin
-      localStorage.removeItem('tb_admin_token');
-      localStorage.removeItem('tb_admin_user');
-      // Hapus sesi pengguna (sama seperti logout pengguna)
-      localStorage.removeItem('tb_token');
-      localStorage.removeItem('tb_user');
-      // Navigasi ke halaman masuk
-      showPage('masuk');
-      // Tampilkan notifikasi
-      const toast = document.createElement('div');
-      toast.textContent = 'Anda telah logout dari panel admin';
-      toast.style.cssText = 'position:fixed;top:20px;right:20px;background:#4a6741;color:white;padding:12px 24px;border-radius:8px;z-index:9999;animation:fadeOut 3s forwards';
-      document.body.appendChild(toast);
-      setTimeout(() => toast.remove(), 3000);
-      // Update tampilan user
-      if (typeof _updateUserDisplay === 'function') _updateUserDisplay();
-      if (typeof _syncProfileDropdown === 'function') _syncProfileDropdown();
-    };
-    footer.appendChild(logoutBtn);
-  }
-
-  // Inject pertama kali (dengan sedikit delay agar core.js sempat render)
-  setTimeout(_ensureLogoutBtn, 150);
-
-  // Pasang MutationObserver pada page-admin agar setiap kali DOM berubah
-  // (misal klik Home / Kelola Fanplate) tombol logout tetap ada
-  const adminPage = document.getElementById('page-admin');
-  if (adminPage) {
-    _adminLogoutObserver = new MutationObserver(() => {
-      _ensureLogoutBtn();
-    });
-    _adminLogoutObserver.observe(adminPage, { childList: true, subtree: true });
-  }
-}
-
-function _stopAdminLogoutObserver() {
-  if (_adminLogoutObserver) {
-    _adminLogoutObserver.disconnect();
-    _adminLogoutObserver = null;
-  }
 }
 
 function _updateUserDisplay() {

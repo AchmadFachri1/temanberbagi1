@@ -67,8 +67,8 @@
                   <td style="font-size:13px;color:#888;">${formatDate(d.tanggal)}</td>
                   <td>
                     ${d.bukti
-                      ? `<button class="admin-btn-detail" onclick="openBuktiModal('${d.id}')">Lihat Bukti</button>`
-                      : `<span style="color:#c0392b;font-weight:600;font-size:13px;">✗ Tidak Ada</span>`}
+        ? `<button class="admin-btn-detail" onclick="openBuktiModal('${d.id}')">Lihat Bukti</button>`
+        : `<span style="color:#c0392b;font-weight:600;font-size:13px;">✗ Tidak Ada</span>`}
                   </td>
                   <td>${badgeHtml(d.status)}</td>
                   <td>
@@ -198,7 +198,7 @@
             ${d.status === 'pending' ? `
             <button onclick="verifyDonasi('${d.id}');document.getElementById('buktiModal').remove()" class="admin-btn-verify" style="flex:1;padding:13px;font-size:14px;font-weight:700;border-radius:10px;">✓ Verifikasi</button>
             <button onclick="rejectDonasi('${d.id}');document.getElementById('buktiModal').remove()" class="admin-btn-reject" style="flex:1;padding:13px;font-size:14px;font-weight:600;border-radius:10px;">✗ Tolak</button>` :
-            `<div style="flex:1;padding:13px;text-align:center;font-size:14px;color:#888;background:#f5f2ee;border-radius:10px;">${d.status === 'verified' ? '✓ Sudah Diverifikasi' : '✗ Sudah Ditolak'}</div>`}
+        `<div style="flex:1;padding:13px;text-align:center;font-size:14px;color:#888;background:#f5f2ee;border-radius:10px;">${d.status === 'verified' ? '✓ Sudah Diverifikasi' : '✗ Sudah Ditolak'}</div>`}
           </div>
         </div>
       </div>`;
@@ -209,7 +209,10 @@
   /* ── Sinkronisasi donasi terverifikasi ke data publik ────── */
   function _syncVerifiedToPublic(d) {
     if (typeof donasiData === 'undefined') return;
-    const match = donasiData.find(x => x.title.toLowerCase().includes(d.program.substring(0, 20).toLowerCase()));
+    // Cocokkan berdasarkan ID donasi, bukan nama program
+    const match = d.donasi_id
+      ? donasiData.find(x => String(x.id) === String(d.donasi_id))
+      : null;
     if (!match) return;
     match.jumlah = (match.jumlah || 0) + d.jumlah;
     // segarkan grid donasi bila sedang tampil

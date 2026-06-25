@@ -43,59 +43,14 @@
     /* dokumentasi/pembaruan per fanplate { [fpId]: [ {judul, isi, img, tanggal} ] } */
     fanplateDokumentasi: {},
 
-    /* DATA MOCK — donasi masuk (menunggu verifikasi) */
-    donasiMasuk: [
-      { id: 'd001', nama: 'Ahmad Fauzi', email: 'ahmad.fauzi@gmail.com', program: 'Mari membantu keluarga di Sumatra', jumlah: 150000, tanggal: '2026-06-01', metode: 'Transfer BCA', bukti: true, status: 'pending' },
-      { id: 'd002', nama: 'Siti Rahma', email: 'siti.r@gmail.com', program: 'Bantu ibadah dengan hikmat', jumlah: 75000, tanggal: '2026-06-01', metode: 'Transfer BRI', bukti: true, status: 'pending' },
-      { id: 'd003', nama: 'Budi Santoso', email: 'budisan@yahoo.com', program: 'Pengadaan ambulance warga pelosok', jumlah: 500000, tanggal: '2026-05-31', metode: 'Transfer Mandiri', bukti: true, status: 'verified' },
-      { id: 'd004', nama: 'Dewi Lestari', email: 'dewi.l@hotmail.com', program: 'Saat ini Ibu suri stadium 3', jumlah: 200000, tanggal: '2026-05-31', metode: 'Transfer BCA', bukti: false, status: 'pending' },
-      { id: 'd005', nama: 'Rizky Pratama', email: 'rizky.p@gmail.com', program: 'Mari membantu keluarga di Sumatra', jumlah: 100000, tanggal: '2026-05-30', metode: 'Transfer BNI', bukti: true, status: 'rejected' },
-      { id: 'd006', nama: 'Nur Hidayah', email: 'nur.h@gmail.com', program: 'Pengadaan ambulance warga pelosok', jumlah: 250000, tanggal: '2026-05-30', metode: 'Transfer BRI', bukti: true, status: 'pending' },
-      { id: 'd007', nama: 'Hasan Basri', email: 'hasan.b@gmail.com', program: 'Bantu ibadah dengan hikmat', jumlah: 50000, tanggal: '2026-05-29', metode: 'Transfer Mandiri', bukti: true, status: 'verified' },
-    ],
+    /* DATA — donasi masuk (dimuat dari API, mulai kosong) */
+    donasiMasuk: [],
 
-    /* DATA — daftar fanplate yang telah dibuat */
-    fanplateList: [
-      {
-        id: 'fp001',
-        img: 'https://images.unsplash.com/photo-1448375240586-882707db888b?w=600&q=80',
-        judul: 'Mari membantu keluarga kita yang berada di sumatra',
-        deskripsi: 'Dengan berbagi, kita bisa membantu mereka yang membutuhkan mulai dari memenuhi kebutuhan pangan, membantu......',
-        target: 500000,
-        deadline: '2026-12-04',
-        fitur: 'donasi',
-        verified: true,
-      },
-      {
-        id: 'fp002',
-        img: 'https://images.unsplash.com/photo-1609234334335-5f6d3a5b3d9a?w=600&q=80',
-        judul: 'Bantu mereka agar dapat melaksanakan ibadah dengan hikmat',
-        deskripsi: 'Dengan berbagi, kita bisa membantu mereka yang membutuhkan mulai dari memenuhi kebutuhan pangan, membantu......',
-        target: 200000,
-        deadline: '2026-12-04',
-        fitur: 'donasi',
-        verified: true,
-      },
-      {
-        id: 'fp003',
-        img: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&q=80',
-        judul: 'Mari sempurnakan Ramadan dengan membayar Zakat Fitrah',
-        deskripsi: 'Dengan berbagi, kita bisa membantu mereka yang membutuhkan mulai dari memenuhi kebutuhan pangan, membantu......',
-        target: null,
-        deadline: null,
-        fitur: 'kewajiban',
-        verified: false,
-      },
-    ],
+    /* DATA — daftar fanplate yang telah dibuat (dimuat dari API, mulai kosong) */
+    fanplateList: [],
 
-    /* foto bukti transfer (mock) per id donasi */
-    buktiFotoMock: {
-      'd001': 'https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=400&q=80',
-      'd002': 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=400&q=80',
-      'd003': 'https://images.unsplash.com/photo-1616091093239-a21c2b56f24b?w=400&q=80',
-      'd006': 'https://images.unsplash.com/photo-1559526324-4b87b5e36e44?w=400&q=80',
-      'd007': 'https://images.unsplash.com/photo-1601597111158-2fceff292cdc?w=400&q=80',
-    },
+    /* foto bukti transfer per id donasi */
+    buktiFotoMock: {},
   };
 
   /* ────────────────────────────────────────────────────────────
@@ -279,6 +234,13 @@
   window.switchAdminMenu = function (menu) {
     Admin.state.adminMenu = menu;
     Admin.render();
+
+    // Muat ulang data dari backend agar transaksi baru langsung muncul
+    // (terutama saat berpindah ke Home atau Verifikasi)
+    if (menu === 'home' || menu === 'verifikasi' || menu === 'kelola-fanplate') {
+      Admin.loadFromAPI();
+    }
+
     // animasi masuk konten
     const c = document.getElementById('adminContent');
     if (c) {
@@ -316,8 +278,14 @@
           const id = t._id || t.id;
           // Simpan foto bukti (jika ada) agar muncul di modal verifikasi
           if (t.bukti_foto) Admin.state.buktiFotoMock[id] = t.bukti_foto;
+          // Ambil ID program donasi terkait (foreign key)
+          const donasiRef = t.donasi;
+          const donasi_id = donasiRef
+            ? (typeof donasiRef === 'object' ? (donasiRef._id || donasiRef.id) : donasiRef)
+            : null;
           return {
             id,
+            donasi_id: donasi_id ? String(donasi_id) : null,
             nama: t.nama,
             email: t.email || '-',
             program: t.program,
@@ -328,28 +296,30 @@
             status: t.status,
           };
         });
-        if (Admin.state.adminMenu === 'verifikasi' || Admin.state.adminMenu === 'home') {
-          Admin.render();
-        }
       }
 
-      // Daftar program donasi (semua, termasuk draft)
+      // Daftar program donasi (SEMUA termasuk draft — agar admin bisa kelola semuanya)
       const dnRes = await window.adminAPI.getDonasi();
-      if (dnRes.response.ok && dnRes.data.success && Array.isArray(dnRes.data.data) && dnRes.data.data.length > 0) {
+      if (dnRes.response.ok && dnRes.data.success && Array.isArray(dnRes.data.data)) {
+        // Selalu ganti dengan data terbaru dari database
         Admin.state.fanplateList = dnRes.data.data.map(d => ({
           id: d._id || d.id,
           img: d.img,
           judul: d.title,
           deskripsi: d.deskripsi || '',
+          konten: d.konten || '',
           target: d.target,
           deadline: d.deadline,
           fitur: d.fitur,
           verified: d.verified,
+          bank: d.bank,
+          no_rekening: d.no_rekening,
+          nama_rekening: d.nama_rekening,
         }));
-        if (Admin.state.adminMenu === 'kelola-fanplate' || Admin.state.adminMenu === 'home') {
-          Admin.render();
-        }
       }
+
+      // Render ulang panel admin dengan data terbaru
+      Admin.render();
     } catch (err) {
       console.warn('Admin: backend tidak tersedia, memakai data mock.', err.message);
     }
@@ -368,14 +338,16 @@
         Admin.loadFromAPI();
       });
     } else {
-      // fallback: observer langsung
+      // fallback: observer langsung — selalu muat ulang data saat halaman admin dibuka
+      let lastVisible = false;
       new MutationObserver(() => {
-        if (el.classList.contains('visible') && !el.dataset.rendered) {
-          el.dataset.rendered = '1';
+        const isVisible = el.classList.contains('visible');
+        if (isVisible && !lastVisible) {
+          lastVisible = true;
           Admin.render();
           Admin.loadFromAPI();
-        } else if (!el.classList.contains('visible')) {
-          delete el.dataset.rendered;
+        } else if (!isVisible) {
+          lastVisible = false;
         }
       }).observe(el, { attributes: true, attributeFilter: ['class'] });
     }

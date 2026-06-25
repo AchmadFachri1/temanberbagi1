@@ -178,6 +178,8 @@
       }
     }
     toast(`Fanplate "${fp.judul.substring(0, 30)}..." dipublikasikan! 🚀`);
+    // Sinkron ulang data donasi publik dari server agar langsung muncul di beranda pengguna
+    if (typeof window.loadDonasiFromAPI === 'function') window.loadDonasiFromAPI();
     if (Admin.state.adminMenu === 'kelola-fanplate') _refreshKelola();
   };
 
@@ -188,15 +190,31 @@
     const name = Admin.state.fanplateList[idx].judul;
 
     // Persist hapus ke backend bila id dari database
+    const isDbId = /^\d+$/.test(String(id)) || /^[a-f0-9]{24}$/i.test(String(id));
     try {
-      if (typeof window.adminAPI !== 'undefined' && (/^\d+$/.test(String(id)) || /^[a-f0-9]{24}$/i.test(String(id)))) {
-        await window.adminAPI.deleteDonasi(id);
+      if (typeof window.adminAPI !== 'undefined' && isDbId) {
+        const { response, data } = await window.adminAPI.deleteDonasi(id);
+        if (!response.ok || !data.success) {
+          toast(data.message || 'Gagal menghapus di server', 'error');
+          return;
+        }
       }
     } catch (err) {
       console.warn('Hapus di backend gagal.', err.message);
     }
 
     Admin.state.fanplateList.splice(idx, 1);
+
+    // Hapus juga dari data publik pengguna agar langsung hilang tanpa refresh
+    if (typeof donasiData !== 'undefined') {
+      const pubIdx = donasiData.findIndex(d => String(d.id) === String(id) || d.title === name);
+      if (pubIdx !== -1) donasiData.splice(pubIdx, 1);
+    }
+    // Render ulang grid donasi pengguna
+    if (typeof window.renderDonasiGrid === 'function') window.renderDonasiGrid();
+    // Sinkron ulang dari server
+    if (typeof window.loadDonasiFromAPI === 'function') window.loadDonasiFromAPI();
+
     toast(`Fanplate "${name.substring(0, 30)}..." dihapus`);
     // render ulang shell agar badge jumlah di sidebar ikut diperbarui
     if (Admin.state.adminMenu === 'kelola-fanplate') Admin.render();
@@ -220,7 +238,7 @@
     const fp = Admin.state.fanplateList.find(f => f.id === Admin.state.fanplateDetailId);
     if (!fp) return `<div style="padding:60px;text-align:center;color:#999;">Fanplate tidak ditemukan. <a style="color:#c9a97e;cursor:pointer;" onclick="switchAdminMenu('kelola-fanplate')">Kembali ke Kelola Fanplate</a></div>`;
 
-    const donasiTerkait = donasiMasuk.filter(d => d.program.toLowerCase().includes(fp.judul.substring(0, 20).toLowerCase()));
+    const donasiTerkait = donasiMasuk.filter(d => d.donasi_id && String(d.donasi_id) === String(fp.id));
     const terkumpul = donasiTerkait.filter(d => d.status === 'verified').reduce((s, d) => s + d.jumlah, 0);
     const pct = fp.target ? Math.min(Math.round((terkumpul / fp.target) * 100), 100) : 0;
     const dl = daysLeft(fp.deadline);
@@ -260,8 +278,8 @@
           </div>` : ''}
           <div class="fp-detail-actions">
             ${!fp.verified
-              ? `<button class="fp-action-btn primary" onclick="publishFanplate('${fp.id}');openFanplateDetail('${fp.id}')">✓ Publikasikan</button>`
-              : `<button class="fp-action-btn warn" onclick="unpublishFanplate('${fp.id}')">⏸ Arsipkan</button>`}
+        ? `<button class="fp-action-btn primary" onclick="publishFanplate('${fp.id}');openFanplateDetail('${fp.id}')">✓ Publikasikan</button>`
+        : `<button class="fp-action-btn warn" onclick="unpublishFanplate('${fp.id}')">⏸ Arsipkan</button>`}
             <button class="fp-action-btn danger-outline" onclick="if(confirm('Hapus fanplate ini?')){deleteFanplateItem('${fp.id}');switchAdminMenu('kelola-fanplate');}">🗑 Hapus</button>
           </div>
         </div>
@@ -309,13 +327,13 @@
         <div class="admin-form-card-body">
           <div style="display:flex;gap:12px;align-items:flex-end;height:110px;padding:0 4px;">
             ${verified.slice(-8).map(d => {
-              const h = Math.max(8, Math.round((d.jumlah / fp.target) * 90));
-              return `<div style="display:flex;flex-direction:column;align-items:center;gap:4px;flex:1;">
+      const h = Math.max(8, Math.round((d.jumlah / fp.target) * 90));
+      return `<div style="display:flex;flex-direction:column;align-items:center;gap:4px;flex:1;">
                 <div style="font-size:10px;color:#888;">${rpFull(d.jumlah).replace('Rp ', '')}</div>
                 <div style="width:100%;background:linear-gradient(180deg,#6b9c4d,#89c25f);border-radius:4px 4px 0 0;height:${h}px;"></div>
                 <div style="font-size:10px;color:#bbb;white-space:nowrap;overflow:hidden;max-width:40px;text-overflow:ellipsis;">${d.nama.split(' ')[0]}</div>
               </div>`;
-            }).join('')}
+    }).join('')}
           </div>
         </div>
       </div>` : ''}
@@ -326,8 +344,8 @@
           <button onclick="switchAdminMenu('verifikasi')" style="font-size:12px;color:#c9a97e;background:none;border:none;cursor:pointer;font-weight:600;">Ke Halaman Verifikasi →</button>
         </div>
         ${donasiTerkait.length === 0
-          ? `<div style="padding:40px;text-align:center;color:#bbb;font-size:14px;">Belum ada donasi untuk program ini</div>`
-          : `<div style="overflow-x:auto;"><table class="admin-table"><thead><tr><th>Donatur</th><th>Jumlah</th><th>Metode</th><th>Tanggal</th><th>Bukti</th><th>Status</th><th>Aksi</th></tr></thead><tbody>
+        ? `<div style="padding:40px;text-align:center;color:#bbb;font-size:14px;">Belum ada donasi untuk program ini</div>`
+        : `<div style="overflow-x:auto;"><table class="admin-table"><thead><tr><th>Donatur</th><th>Jumlah</th><th>Metode</th><th>Tanggal</th><th>Bukti</th><th>Status</th><th>Aksi</th></tr></thead><tbody>
             ${donasiTerkait.map(d => `<tr>
               <td><div class="admin-donor-cell"><div class="admin-donor-avatar" style="background:${avatarColor(d.nama)}">${d.nama.charAt(0)}</div><div><div class="admin-donor-name">${d.nama}</div><div class="admin-donor-email">${d.email}</div></div></div></td>
               <td style="font-weight:700;color:#4a7a35;">${rpFull(d.jumlah)}</td>
@@ -464,7 +482,7 @@
     Admin.state.fanplateDetailTab = tab;
     const fp = Admin.state.fanplateList.find(f => f.id === Admin.state.fanplateDetailId);
     if (!fp) return;
-    const donasiTerkait = Admin.state.donasiMasuk.filter(d => d.program.toLowerCase().includes(fp.judul.substring(0, 20).toLowerCase()));
+    const donasiTerkait = Admin.state.donasiMasuk.filter(d => d.donasi_id && String(d.donasi_id) === String(fp.id));
     const terkumpul = donasiTerkait.filter(d => d.status === 'verified').reduce((s, d) => s + d.jumlah, 0);
     const pct = fp.target ? Math.min(Math.round((terkumpul / fp.target) * 100), 100) : 0;
     const c = document.getElementById('fpDetailTabContent');
@@ -505,7 +523,7 @@
     }; r.readAsDataURL(file);
   };
 
-  window.saveEditFanplate = function (id) {
+  window.saveEditFanplate = async function (id) {
     const { toast } = Admin.utils;
     const fp = Admin.state.fanplateList.find(f => f.id === id); if (!fp) return;
     const judul = document.getElementById('editJudul')?.value.trim();
@@ -515,17 +533,60 @@
     const fitur = document.querySelector('#editFiturChips .admin-fitur-chip.selected')?.dataset.val || fp.fitur;
     const imgEl = document.getElementById('editImgZone')?.querySelector('img');
     if (!judul || !deskripsi) { toast('Judul dan Deskripsi wajib diisi!', 'error'); return; }
+
+    // Persist ke backend
+    const isDbId = /^\d+$/.test(String(id)) || /^[a-f0-9]{24}$/i.test(String(id));
+    try {
+      if (typeof window.adminAPI !== 'undefined' && isDbId) {
+        const payload = { title: judul, deskripsi, target, deadline, fitur };
+        if (imgEl && !imgEl.src.startsWith('data:')) payload.img = imgEl.src;
+        await window.adminAPI.updateDonasi(id, payload);
+      }
+    } catch (err) {
+      console.warn('Update di backend gagal.', err.message);
+    }
+
     fp.judul = judul; fp.deskripsi = deskripsi; fp.target = target; fp.deadline = deadline; fp.fitur = fitur;
     if (imgEl) fp.img = imgEl.src;
+
+    // Sinkron ulang data donasi publik
+    if (typeof window.loadDonasiFromAPI === 'function') window.loadDonasiFromAPI();
+
     toast('Fanplate berhasil diperbarui! ✅');
     window.openFanplateDetail(id);
   };
 
-  window.unpublishFanplate = function (id) {
+  window.unpublishFanplate = async function (id) {
     const { toast } = Admin.utils;
     const fp = Admin.state.fanplateList.find(f => f.id === id); if (!fp) return;
+
+    // Persist ke backend — set verified: false
+    const isDbId = /^\d+$/.test(String(id)) || /^[a-f0-9]{24}$/i.test(String(id));
+    try {
+      if (typeof window.adminAPI !== 'undefined' && isDbId) {
+        const { response, data } = await window.adminAPI.updateDonasi(id, { verified: false });
+        if (!response.ok || !data.success) {
+          toast(data.message || 'Gagal mengarsipkan di server', 'error');
+          return;
+        }
+      }
+    } catch (err) {
+      console.warn('Arsipkan di backend gagal.', err.message);
+    }
+
     fp.verified = false;
-    toast('Fanplate diarsipkan');
+
+    // Hapus dari data publik pengguna agar langsung hilang tanpa refresh
+    if (typeof donasiData !== 'undefined') {
+      const pubIdx = donasiData.findIndex(d => String(d.id) === String(id) || d.title === fp.judul);
+      if (pubIdx !== -1) donasiData.splice(pubIdx, 1);
+    }
+    // Render ulang grid donasi pengguna
+    if (typeof window.renderDonasiGrid === 'function') window.renderDonasiGrid();
+    // Sinkron ulang dari server
+    if (typeof window.loadDonasiFromAPI === 'function') window.loadDonasiFromAPI();
+
+    toast('Fanplate diarsipkan — tidak tampil di beranda pengguna');
     window.openFanplateDetail(id);
   };
 })();
