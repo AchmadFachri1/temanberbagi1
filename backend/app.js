@@ -33,8 +33,15 @@ const app = express();
 /* ─── Middleware Global ───────────────────────────────────── */
 
 // CORS — izinkan frontend mengakses API
+// Tambahkan domain Vercel frontend kamu di sini (production + preview)
 app.use(cors({
-  origin: ['http://localhost:3000', 'http://127.0.0.1:3000', 'http://localhost:5500'],
+  origin: [
+    'http://localhost:3000',
+    'http://127.0.0.1:3000',
+    'http://localhost:5500',
+    'https://temanberbagi1.vercel.app',
+    'https://temanberbagi1-git-main-achmadfachri1s-projects.vercel.app',
+  ],
   credentials: true,
 }));
 
@@ -46,9 +53,6 @@ app.use(express.urlencoded({ extended: true }));
 if (process.env.NODE_ENV !== 'test') {
   app.use(morgan('dev'));
 }
-
-// Serve frontend sebagai static files
-app.use(express.static(path.join(__dirname, '..', 'frontend')));
 
 // Upload folder
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
@@ -68,14 +72,6 @@ app.get('/api/health', (req, res) => {
     message: 'Teman Berbagi API berjalan dengan baik!',
     timestamp: new Date().toISOString(),
   });
-});
-
-/* ─── Fallback: serve frontend untuk SPA routing ─────────── */
-app.get('*', (req, res, next) => {
-  if (req.path.startsWith('/api/')) {
-    return next();
-  }
-  res.sendFile(path.join(__dirname, '..', 'frontend', 'index.html'));
 });
 
 /* ─── Error Handling ─────────────────────────────────────── */

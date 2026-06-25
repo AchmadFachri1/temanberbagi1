@@ -17,7 +17,7 @@
  * ─────────────────────────────────────────────────────────────
  */
 
-const API_BASE = 'http://localhost:5000/api';
+const API_BASE = 'https://teman-berbagi-backend-ecru.vercel.app/api';
 
 const api = {
   /**
