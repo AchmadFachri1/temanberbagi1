@@ -17,7 +17,7 @@
  * ─────────────────────────────────────────────────────────────
  */
 
-const API_BASE = 'https://teman-berbagi-backend-ecru.vercel.app/api';
+const API_BASE = 'https://web-production-db0a3.up.railway.app/api';
 
 const api = {
   /**
